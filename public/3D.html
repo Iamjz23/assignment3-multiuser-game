@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Escape Maze</title>
+        <meta charset="utf-8" />
+        <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    </head>
+
+    <body>
+        <!-- our buttond to tell others -->
+        <!-- <button id="red" style="background-color:rgb(255, 0, 0); color:rgb(255, 255, 255)">RED</button>
+        <button id="blue" style="background-color:rgb(0, 0, 255); color:rgb(255, 255, 255)">BLUE</button> -->
+
+        <a-scene background="color:rgb(0, 0, 0);">
+            <a-asset>
+                <a-asset-item id="enviroment" src="assets/enviroment.glb"></a-asset-item>
+                <a-asset-item id="goldMonkey" src="assets/goldKey.glb"></a-asset-item>
+                <a-asset-item id="silverMonkey" src="assets/silverKey.glb"></a-asset-item>
+                <a-asset-item id="trap1L" src="assets/trap1_left.glb"></a-asset-item>
+                <a-asset-item id="trap1R" src="assets/trap1_right.glb"></a-asset-item>
+                <a-asset-item id="trap2door" src="assets/trap2_door.glb"></a-asset-item>
+                <a-asset-item id="trap2gear1" src="assets/trap2_gear1.glb"></a-asset-item>    
+                <a-asset-item id="trap2gear2" src="assets/trap2_gear2.glb"></a-asset-item>
+                <a-asset-item id="trap2gear3" src="assets/trap2_gear3.glb"></a-asset-item>
+                <a-asset-item id="trap3doorL" src="assets/trap3_doorLeft.glb"></a-asset-item>
+                <a-asset-item id="trap3doorR" src="assets/trap3_doorRight.glb"></a-asset-item>
+                <a-asset-item id="goldTrophy" src="assets/final_gold.glb"></a-asset-item>
+                <a-asset-item id="silverTrophy" src="assets/final_silverglb.glb"></a-asset-item>
+            </a-asset>
+            <a-entity camera wasd-controls="acceleration: 17" look-controls position="-1 1 18">
+                <a-entity cursor="rayOrigin:mouse;" raycaster="far:20; interval:200; objects:.interactive"></a-entity>
+            </a-entity>
+
+            <a-entity gltf-model="#enviroment"></a-entity>
+            <a-entity id="goldKey" gltf-model="#goldMonkey"></a-entity>
+            <a-entity id="silverKey" gltf-model="#silverMonkey"></a-entity> 
+            <a-entity gltf-model="#trap1L" id="trap1AniL" position="0 -1 0" animation="property: position; to: 1.1 -1 0; loop: true; dur: 800;"></a-entity>
+            <a-entity gltf-model="#trap1R" id="trap1AniR" position="0 -1 0" animation="property: position; to: -1.1 -1 0; loop: true; dur: 800;"></a-entity>
+
+            <a-entity gltf-model="#trap2door" id="door2" animation="property: position; to: 0 2.5 0; dur: 2500; enabled: false"></a-entity>
+            <a-entity gltf-model="#trap2gear1"></a-entity>
+            <a-entity gltf-model="#trap2gear2"></a-entity>
+            <a-entity gltf-model="#trap2gear3"></a-entity>
+
+            <a-entity gltf-model="#trap3doorL" id="door3l" animation="property: position; to: 0 2.5 0; dur: 2500; enabled: false"></a-entity>
+            <a-entity gltf-model="#trap3doorR" id="door3r" animation="property: position; to: 0 2.5 0; dur: 2500; enabled: false"></a-entity>
+            <a-entity gltf-model="#goldTrophy"></a-entity>
+            <a-entity gltf-model="#silverTrophy"></a-entity>
+            <a-entity light="type: ambient; color: #E1FCFF; intensity: 50"></a-entity>
+
+            <a-entity id="red_button_1" position="-3.85 0.5 4.65">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(0, 255, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="blue_button_1" position="-5.45 0.5 -0.5">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(0, 0, 255); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(100, 100, 255); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="gold_button" position="-3 0.1 -3.5">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseclick="property:material.color; type:color; to:rgb(187, 149, 31); startEvents:click; dur:200"shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="silver_button" position="10.05 0.1 -1.3">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseclick="property:material.color; type:color; to:rgb(0, 0, 0); startEvents:click; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="door2_handle" position="6 4 5">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.05; height:4;" material="color:rgb(255, 216, 0)"
+                            animation__mouseclick="property:material.color; type:color; to:rgb(12, 255, 251); startEvents:click; dur:200" 
+                            animation__mouseenter="property:position.y; to: -2; startEvents:mouseenter; dur:2500"
+                            animation__mouseleave="property:position.y; to: 0; startEvents:mouseleave; dur:400" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="red_button_2" position="5.3 1 0.1">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(255, 100, 100)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(255, 0, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(255, 100, 100); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="blue_button_2" position="5.3 1 -2.9">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(0, 0, 255); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(100, 100, 255); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="door3_button" position="5.3 0.1 -1.45">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(58, 0, 113); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(100, 100, 255); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+            <a-entity id="final_button" position="-6 0.5 -8">
+                <a-entity class="button interactive" position="0 0 0" geometry="primitive:cylinder; radius:0.15; height:0.2;" material="color:rgb(100, 100, 255)"
+                            animation__mouseenter="property:material.color; type:color; to:rgb(113, 90, 0); startEvents:mouseenter; dur:200"
+                            animation__mouseleave="property:material.color; type:color; to:rgb(100, 100, 255); startEvents:mouseleave; dur:200" shadow></a-entity>
+            </a-entity>
+
+            <a-entity id="goldKeyText" position="-3 1 -3.5"
+            animation="property: components.text.material.uniforms.color.value; type: color; to:rgb(113, 90, 0); dir: alternate; loop: true"
+            text="color: white; align: center; value: You Secured the Gold Key!; width: 6.5" visible="false"></a-entity>
+
+            <a-entity id="silverKeyText" position="10.05 0.7 -1.2"
+            animation="property: components.text.material.uniforms.color.value; type: color; to: rgb(137, 137, 137); dir: alternate; loop: true"
+            text="color: white; align: center; value: You Secured Silver Key!; width: 6.5" visible="false"></a-entity>
+
+            <a-entity id="winText" position="-11 5 -8" rotation="0 90 0"
+            animation="property: scale; to: 2 2 2; dir: alternate; loop: true"
+            text="color: gold; align: center; value: You WIN!; width: 20" visible="false"></a-entity>
+        </a-scene>
+
+        <!-- this is magic code created when the node server runs -->
+        <!-- putting at the bottom of body to let body load first before we try to query for elements -->
+        <!-- //VERY HANDY! https://socket.io/docs/v4/emit-cheatsheet/ -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/3dscript.js"></script>
+    </body>
+</html>

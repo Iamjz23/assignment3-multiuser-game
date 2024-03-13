@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>PvP Rock Paper Scissors</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div class="game">
+            <h1>Rock Paper Scissors - 2 Players</h1>
+            <div class="result">
+              <p>Please Make your choice...</p>
+            </div>
+            <div class="choices">
+              <div class="player1">
+                <h2>Player 1</h2>
+                <button class="btn" data-player="1" data-choice="rock">Rock</button>
+                <button class="btn" data-player="1" data-choice="paper">Paper</button>
+                <button class="btn" data-player="1" data-choice="scissors">Scissors</button>
+              </div>
+              <div class="player2">
+                <h2>Player 2</h2>
+                <button class="btn" data-player="2" data-choice="rock">Rock</button>
+                <button class="btn" data-player="2" data-choice="paper">Paper</button>
+                <button class="btn" data-player="2" data-choice="scissors">Scissors</button>
+              </div>
+            </div>
+        </div>
+
+
+        <!-- this is magic code created when the node server runs -->
+        <!-- //VERY HANDY! https://socket.io/docs/v3/emit-cheatsheet/  -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="js/2dscript.js"></script>
+    </body>
+</html>

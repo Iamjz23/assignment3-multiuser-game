@@ -1,0 +1,19 @@
+h1 {
+    text-align: center;
+}
+.result {
+    text-align: center;
+    font-size: 3rem;
+}
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 0;
+    margin-top: 2rem;
+}
+.player1 {
+    text-align: center;
+}
+.player2 {
+    text-align: center;
+}
